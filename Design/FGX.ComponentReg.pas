@@ -26,9 +26,10 @@ uses
   System.Classes,
   DesignIntf,
   FMX.Graphics, FMX.Styles.Objects, FMX.Styles.Switch,
-  FGX.ActionSheet, FGX.VirtualKeyboard, FGX.ProgressDialog, FGX.GradientEdit, FGX.ColorsPanel, FGX.LinkedLabel,
-  FGX.FlipView, FGX.ApplicationEvents, FGX.Animations,
-  FGX.Items, FGX.Consts;
+  FGX.ActionSheet, FGX.VirtualKeyboard, FGX.ProgressDialog, FGX.GradientEdit, FGX.BitBtn, FGX.Toolbar,
+  FGX.ColorsPanel, FGX.LinkedLabel, FGX.FlipView, FGX.ApplicationEvents, FGX.Animations,
+  FGX.Items, FGX.Consts,
+  FGX.Editor.Items, FMX.Styles;
 
 procedure Register;
 begin
@@ -37,11 +38,13 @@ begin
     TfgActionSheet,
     TfgActivityDialog,
     TfgApplicationEvents,
+    TfgBitBtn,
     TfgColorsPanel,
     TfgFlipView,
     TfgGradientEdit,
     TfgLinkedLabel,
     TfgProgressDialog,
+    TfgToolBar,
     TfgVirtualKeyboard
     ]);
 
@@ -54,7 +57,7 @@ begin
   RegisterComponents(rsStyleObjects, [TStyleObject, TSubImage, TActiveStyleObject, TTabStyleObject, TCheckStyleObject,
     TButtonStyleObject, TSystemButtonObject, TStyleTextObject, TStyleTextAnimation,
     TActiveStyleTextObject, TTabStyleTextObject, TButtonStyleTextObject, TActiveOpacityObject,
-    TBrushObject, TBitmapObject, TFontObject, TPathObject, TColorObject,
+    TBrushObject, TBitmapObject, TFontObject, TPathObject, TColorObject, TStyleTag,
     // New XE6 objects
     TTintedButtonStyleObject, TTintedStyleObject, TMaskedImage, TActiveMaskedImage,
     TSwitchTextObject, TCustomSwitchObject, TSwitchObject, TBitmapSwitchObject

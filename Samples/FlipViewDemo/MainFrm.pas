@@ -6,29 +6,17 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Variants, System.Classes,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FGX.FlipView, FMX.Ani, FMX.Effects,
   FMX.Filter.Effects, FMX.ListView.Types, FMX.ListView, FMX.Edit, FMX.ListBox, FMX.NumberBox, FMX.Controls.Presentation,
-  FMX.EditBox, FMX.ScrollBox, FMX.Memo;
+  FMX.EditBox, FMX.ScrollBox, FMX.Memo, FMX.Gestures, FMX.Layouts, FMX.MultiView;
 
 type
   TFormMain = class(TForm)
     fgFlipView: TfgFlipView;
-    PanelSettings: TPanel;
-    cbSlideShow: TCheckBox;
-    Label1: TLabel;
     nbSlideShowDuration: TNumberBox;
-    gbCommonSettings: TGroupBox;
-    Label2: TLabel;
     cbMode: TComboBox;
-    Label3: TLabel;
     ListBoxItem1: TListBoxItem;
     ListBoxItem2: TListBoxItem;
-    gbEffectSliding: TGroupBox;
-    Label4: TLabel;
-    Label5: TLabel;
     cbEffectDuration: TNumberBox;
     cbEffect: TComboBox;
-    gbShiftSliding: TGroupBox;
-    Label6: TLabel;
-    Label7: TLabel;
     cbSlideDirection: TComboBox;
     nbSlideDuration: TNumberBox;
     ListBoxItem3: TListBoxItem;
@@ -54,9 +42,25 @@ type
     ListBoxItem25: TListBoxItem;
     ListBoxItem26: TListBoxItem;
     ListBoxItem27: TListBoxItem;
-    gbLog: TGroupBox;
     Memo1: TMemo;
-    procedure cbSlideShowChange(Sender: TObject);
+    GestureManager1: TGestureManager;
+    MultiView1: TMultiView;
+    ListBox1: TListBox;
+    ListBoxGroupHeader1: TListBoxGroupHeader;
+    ListBoxItem5: TListBoxItem;
+    ListBoxItem6: TListBoxItem;
+    ListBoxItem28: TListBoxItem;
+    ListBoxItem29: TListBoxItem;
+    ListBoxGroupHeader2: TListBoxGroupHeader;
+    ListBoxItem30: TListBoxItem;
+    ListBoxItem31: TListBoxItem;
+    ListBoxGroupHeader3: TListBoxGroupHeader;
+    ListBoxItem32: TListBoxItem;
+    swSlideShow: TSwitch;
+    MultiView2: TMultiView;
+    ListBoxItem33: TListBoxItem;
+    swShowNavigationButtons: TSwitch;
+    SpeedButton1: TSpeedButton;
     procedure nbSlideShowDurationChange(Sender: TObject);
     procedure cbModeChange(Sender: TObject);
     procedure cbEffectChange(Sender: TObject);
@@ -65,6 +69,12 @@ type
     procedure cbSlideDirectionChange(Sender: TObject);
     procedure fgFlipViewStartChanging(Sender: TObject; const NewItemIndex: Integer);
     procedure fgFlipViewFinishChanging(Sender: TObject);
+    procedure swSlideShowSwitch(Sender: TObject);
+    procedure MultiView1PresenterChanging(Sender: TObject; var PresenterClass: TMultiViewPresentationClass);
+    procedure FormCreate(Sender: TObject);
+    procedure swShowNavigationButtonsSwitch(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure fgFlipViewImageClick(Sender: TObject; const AFlipView: TfgCustomFlipView; const AImageIndex: Integer);
   private
     { Private declarations }
   public
@@ -77,7 +87,7 @@ var
 implementation
 
 uses
-  FGX.FlipView.Types;
+  FGX.FlipView.Types, FMX.MultiView.Presentations;
 
 {$R *.fmx}
 
@@ -101,14 +111,19 @@ begin
   fgFlipView.SlideOptions.Direction := TfgSlideDirection(cbSlideDirection.ItemIndex);
 end;
 
-procedure TFormMain.cbSlideShowChange(Sender: TObject);
-begin
-  fgFlipView.SlideShowOptions.Enabled := cbSlideShow.IsChecked;
-end;
-
 procedure TFormMain.fgFlipViewFinishChanging(Sender: TObject);
 begin
   Memo1.Lines.Add('OnFinishChanging');
+end;
+
+procedure TFormMain.fgFlipViewImageClick(Sender: TObject; const AFlipView: TfgCustomFlipView;
+  const AImageIndex: Integer);
+var
+  Message: string;
+begin
+  Message := Format('OnImageClick: Image=%d', [AImageIndex]);
+  Memo1.Lines.Add(Message);
+  ShowMessage(Message);
 end;
 
 procedure TFormMain.fgFlipViewStartChanging(Sender: TObject; const NewItemIndex: Integer);
@@ -116,9 +131,38 @@ begin
   Memo1.Lines.Add(Format('OnStartChanging: Image=%d', [NewItemIndex]));
 end;
 
+procedure TFormMain.FormCreate(Sender: TObject);
+begin
+  MultiView1.Mode := TMultiViewMode.PlatformBehaviour;
+{$IFNDEF MSWINDOWS}
+  ListBox1.ItemHeight := 0;
+{$ENDIF}
+end;
+
+procedure TFormMain.MultiView1PresenterChanging(Sender: TObject; var PresenterClass: TMultiViewPresentationClass);
+begin
+  if PresenterClass = TMultiViewNavigationPanePresentation then
+    PresenterClass := TMultiViewDockedPanelPresentation;
+end;
+
 procedure TFormMain.nbSlideShowDurationChange(Sender: TObject);
 begin
   fgFlipView.SlideShowOptions.Duration := Round(nbSlideShowDuration.Value);
+end;
+
+procedure TFormMain.SpeedButton1Click(Sender: TObject);
+begin
+  Memo1.Lines.Clear;
+end;
+
+procedure TFormMain.swShowNavigationButtonsSwitch(Sender: TObject);
+begin
+  fgFlipView.ShowNavigationButtons := swShowNavigationButtons.IsChecked;
+end;
+
+procedure TFormMain.swSlideShowSwitch(Sender: TObject);
+begin
+  fgFlipView.SlideShowOptions.Enabled := swSlideShow.IsChecked;
 end;
 
 procedure TFormMain.nbSlideDurationChange(Sender: TObject);

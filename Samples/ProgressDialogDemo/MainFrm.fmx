@@ -10,9 +10,8 @@ object FormMain: TFormMain
   Padding.Bottom = 10.000000000000000000
   FormFactor.Width = 320
   FormFactor.Height = 480
-  FormFactor.Orientations = [Portrait, Landscape, InvertedPortrait, InvertedLandscape]
-  FormFactor.Devices = [Desktop, iPhone, iPad]
-  DesignerMasterStyle = 2
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
   object LayoutButtons: TLayout
     Align = Center
     Size.Width = 222.000000000000000000
@@ -39,20 +38,52 @@ object FormMain: TFormMain
       OnClick = btnActivityDialogClick
     end
   end
+  object Layout1: TLayout
+    Align = Top
+    Position.X = 10.000000000000000000
+    Position.Y = 10.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 39.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Label1: TLabel
+      Align = Left
+      AutoSize = True
+      Size.Width = 100.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.WordWrap = False
+      Text = 'Cancellable:'
+    end
+    object SwitchCancellable: TSwitch
+      Align = Right
+      IsChecked = False
+      Position.X = 256.000000000000000000
+      Position.Y = 6.000000000000000000
+      Size.Width = 44.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      OnSwitch = SwitchCancellableSwitch
+    end
+  end
   object fgProgressDialog: TfgProgressDialog
     Message = 'Downloading...'
+    Max = 1000.000000000000000000
     Title = 'Please, Wait'
+    OnCancel = fgProgressDialogCancel
     OnShow = fgProgressDialogShow
     OnHide = fgProgressDialogHide
-    Left = 40
-    Top = 48
+    Left = 64
+    Top = 120
   end
   object fgActivityDialog: TfgActivityDialog
     Message = 'Please, Wait'
     Title = 'Downloading content'
+    OnCancel = fgActivityDialogCancel
     OnShow = fgProgressDialogShow
     OnHide = fgProgressDialogHide
-    Left = 256
-    Top = 48
+    Left = 216
+    Top = 120
   end
 end

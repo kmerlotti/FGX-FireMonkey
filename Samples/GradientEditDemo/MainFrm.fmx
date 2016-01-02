@@ -7,18 +7,14 @@ object FormMain: TFormMain
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop, iPhone, iPad]
-  DesignerMobile = False
-  DesignerWidth = 0
-  DesignerHeight = 0
-  DesignerDeviceName = ''
-  DesignerOrientation = 0
-  DesignerOSVersion = ''
+  DesignerMasterStyle = 0
   object FMXGradientEdit: TGradientEdit
-    Height = 33.000000000000000000
     Position.X = 6.000000000000000000
     Position.Y = 105.000000000000000000
+    Size.Width = 409.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 0
-    Width = 409.000000000000000000
   end
   object fgGradientEdit: TfgGradientEdit
     BorderRadius = 5.000000000000000000
@@ -43,10 +39,11 @@ object FormMain: TFormMain
         Color = xD01B00F1
         Offset = 1.000000000000000000
       end>
-    Height = 34.000000000000000000
     Position.X = 14.000000000000000000
     Position.Y = 56.000000000000000000
+    Size.Width = 395.000000000000000000
+    Size.Height = 35.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 1
-    Width = 397.000000000000000000
   end
 end

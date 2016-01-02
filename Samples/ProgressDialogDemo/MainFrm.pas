@@ -25,11 +25,19 @@ type
     fgActivityDialog: TfgActivityDialog;
     btnActivityDialog: TButton;
     LayoutButtons: TLayout;
+    Layout1: TLayout;
+    Label1: TLabel;
+    SwitchCancellable: TSwitch;
     procedure btnProgressDialogClick(Sender: TObject);
     procedure btnActivityDialogClick(Sender: TObject);
     procedure fgProgressDialogHide(Sender: TObject);
     procedure fgProgressDialogShow(Sender: TObject);
-  public
+    procedure SwitchCancellableSwitch(Sender: TObject);
+    procedure fgProgressDialogCancel(Sender: TObject);
+    procedure fgActivityDialogCancel(Sender: TObject);
+  private
+    FProgressDialogThread: TThread;
+    FActivityDialogThread: TThread;
   end;
 
 var
@@ -41,50 +49,157 @@ implementation
 
 procedure TFormMain.btnProgressDialogClick(Sender: TObject);
 begin
-  fgProgressDialog.ResetProgress;
-  fgProgressDialog.Show;
-  try
-    fgProgressDialog.Message := 'Preparing downloading content';
-    fgProgressDialog.Kind := TfgProgressDialogKind.Undeterminated;
-    Sleep(1000);
-    fgProgressDialog.Kind := TfgProgressDialogKind.Determinated;
-    Sleep(1000);
-    fgProgressDialog.Message := 'Union units...';
-    fgProgressDialog.Progress := 10;
-    Sleep(1000);
-    fgProgressDialog.Message := 'Sorting units in package...';
-    fgProgressDialog.Progress := 20;
-    Sleep(1000);
-    fgProgressDialog.Message := 'Removed comments...';
-    fgProgressDialog.Progress := 60;
-    Sleep(1000);
-    fgProgressDialog.Message := 'Finishig';
-    fgProgressDialog.Progress := 90;
-    Sleep(500);
-    fgProgressDialog.Progress := 100;
-    Sleep(500);
-  finally
-    fgProgressDialog.Hide;
+  if not fgProgressDialog.IsShown then
+  begin
+    FProgressDialogThread := TThread.CreateAnonymousThread(procedure
+      begin
+        try
+          TThread.Synchronize(nil, procedure
+          begin
+            fgProgressDialog.ResetProgress;
+            fgProgressDialog.Show;
+            fgProgressDialog.Message := 'Preparing downloading content';
+            fgProgressDialog.Kind := TfgProgressDialogKind.Undeterminated;
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgProgressDialog.Kind := TfgProgressDialogKind.Determinated;
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgProgressDialog.Message := 'Union units...';
+            fgProgressDialog.Progress := 10;
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgProgressDialog.Message := 'Sorting units in package...';
+            fgProgressDialog.Progress := 20;
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgProgressDialog.Message := 'Removed comments...';
+            fgProgressDialog.Progress := 60;
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgProgressDialog.Message := 'Finishig';
+            fgProgressDialog.Progress := 90;
+          end);
+          Sleep(500);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgProgressDialog.Progress := 100;
+          end);
+          Sleep(500);
+          if TThread.CheckTerminated then
+            Exit;
+        finally
+          if not TThread.CheckTerminated then
+            TThread.Synchronize(nil, procedure
+            begin
+              fgProgressDialog.Hide;
+            end);
+        end;
+      end);
+    FProgressDialogThread.FreeOnTerminate := False;
+    FProgressDialogThread.Start;
   end;
 end;
 
 procedure TFormMain.btnActivityDialogClick(Sender: TObject);
 begin
-  fgActivityDialog.Message := 'Please, Wait';
-  fgActivityDialog.Show;
-  try
-    Sleep(1000);
-    fgActivityDialog.Message := 'Downloading file info.txt';
-    Sleep(1000);
-    fgActivityDialog.Message := 'Downloading file game.level';
-    Sleep(1000);
-    fgActivityDialog.Message := 'Downloading file delphi.zip';
-    Sleep(1000);
-    fgActivityDialog.Message := 'Finishig';
-    Sleep(500);
-  finally
-    fgActivityDialog.Hide;
+  if not fgActivityDialog.IsShown then
+  begin
+    FActivityDialogThread := TThread.CreateAnonymousThread(procedure
+      begin
+        try
+          TThread.Synchronize(nil, procedure
+          begin
+            fgActivityDialog.Message := 'Please, Wait';
+            fgActivityDialog.Show;
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgActivityDialog.Message := 'Downloading file info.txt';
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgActivityDialog.Message := 'Downloading file game.level';
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgActivityDialog.Message := 'Downloading file delphi.zip';
+          end);
+          Sleep(1000);
+          if TThread.CheckTerminated then
+            Exit;
+
+          TThread.Synchronize(nil, procedure
+          begin
+            fgActivityDialog.Message := 'Finishig';
+          end);
+          Sleep(500);
+
+          if TThread.CheckTerminated then
+            Exit;
+        finally
+          if not TThread.CheckTerminated then
+            TThread.Synchronize(nil, procedure
+            begin
+              fgActivityDialog.Hide;
+            end);
+        end;
+      end);
+    FActivityDialogThread.FreeOnTerminate := False;
+    FActivityDialogThread.Start;
   end;
+end;
+
+procedure TFormMain.fgActivityDialogCancel(Sender: TObject);
+begin
+  Log.d('OnCancel');
+  FActivityDialogThread.Terminate;
+end;
+
+procedure TFormMain.fgProgressDialogCancel(Sender: TObject);
+begin
+  Log.d('OnCancel');
+  FProgressDialogThread.Terminate;
 end;
 
 procedure TFormMain.fgProgressDialogHide(Sender: TObject);
@@ -95,6 +210,12 @@ end;
 procedure TFormMain.fgProgressDialogShow(Sender: TObject);
 begin
   Log.d('OnShow');
+end;
+
+procedure TFormMain.SwitchCancellableSwitch(Sender: TObject);
+begin
+  fgActivityDialog.Cancellable := SwitchCancellable.IsChecked;
+  fgProgressDialog.Cancellable := SwitchCancellable.IsChecked;
 end;
 
 end.

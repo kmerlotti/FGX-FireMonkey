@@ -1,0 +1,41 @@
+{
+        "search_pathes": 
+    [
+        {
+            "pathes": "Library",
+            "platforms": "Win32;Win64"
+        }
+    ],
+	
+    "browsing_pathes": 
+    [
+        {
+            "pathes": "Library",
+            "platforms": "Win32;Win64"
+        }
+    ],
+
+    "source_folders":
+    [
+        {
+            "folder": "Library",
+            "base": "",
+            "recursive": true,
+            "filter": "*;*.*"
+        },
+        {
+            "folder": "Design",
+            "base": "",
+            "recursive": true,
+            "filter": "*;*.*"
+        }
+    ],
+
+    "projects":
+    [
+        {
+            "project": "FGXGroup.groupproj"
+            "compiler_min": 30			
+        }
+    ]
+}

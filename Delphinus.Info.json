@@ -1,0 +1,10 @@
+{
+    "id": "{CF8C41FA-4940-4E02-8D26-185896E4766E}",
+    "name": "FGX for FireMonkey",
+    "picture": "Images\\logo-fm.png",
+    "license_type": "MPL-2.0",
+    "platforms": "Win32;Win64",
+    "first_version": "0.7.1.74",
+    "package_compiler_min": 24,
+    "compiler_min": 24
+}

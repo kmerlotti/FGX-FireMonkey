@@ -3,7 +3,7 @@
     [
         {
             "pathes": "Library",
-            "platforms": "Win32;Win64"
+            "platforms": "Win32;Win64;Android"
         }
     ],
 	
@@ -11,7 +11,7 @@
     [
         {
             "pathes": "Library",
-            "platforms": "Win32;Win64"
+            "platforms": "Win32;Win64;Android"
         }
     ],
 
@@ -34,7 +34,11 @@
     "projects":
     [
         {
-            "project": "FGXGroup.groupproj",
+            "project": "Library\\fgx.dproj",
+            "compiler_min": 30			
+        },
+		{
+            "project": "Design\\dclfgx.dproj",
             "compiler_min": 30			
         }
     ]

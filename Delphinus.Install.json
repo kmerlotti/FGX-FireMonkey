@@ -15,12 +15,27 @@
 
 	"source_folders" :
 	[{
+			"folder" : "Design",
+			"base" : "",
+			"recursive" : true,
+			"filter" : "*;*.*"
+		}, {
+			"folder" : "Images",
+			"base" : "",
+			"recursive" : true,
+			"filter" : "*;*.*"
+		}, {
 			"folder" : "Library",
 			"base" : "",
 			"recursive" : true,
 			"filter" : "*;*.*"
 		}, {
-			"folder" : "Design",
+			"folder" : "Samples",
+			"base" : "",
+			"recursive" : true,
+			"filter" : "*;*.*"
+		}, {
+			"folder" : "Styles",
 			"base" : "",
 			"recursive" : true,
 			"filter" : "*;*.*"

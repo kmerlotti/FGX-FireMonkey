@@ -34,7 +34,7 @@
     "projects":
     [
         {
-            "project": "FGXGroup.groupproj"
+            "project": "FGXGroup.groupproj",
             "compiler_min": 30			
         }
     ]

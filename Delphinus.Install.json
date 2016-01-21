@@ -1,0 +1,23 @@
+{
+	"search_pathes" :
+	[{
+			"pathes" : "Library;Library\\Interfaces",
+			"platforms" : "Win32;Win64;OSX32;Android"
+		}
+	],
+	"browsing_pathes" :
+	[{
+			"pathes" : "Library;Library\\Interfaces",
+			"platforms" : "Win32;Win64;OSX32;Android"
+		}
+	],
+
+	"source_folders" :
+	[{
+			"folder" : "Library",
+			"base" : "Library",
+			"recursive" : true,
+			"filter" : "*;*.*"
+		}
+	]
+}

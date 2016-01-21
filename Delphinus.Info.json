@@ -1,0 +1,13 @@
+{
+	"id" : "{A06BB5E8-D237-4162-8845-58A4223CC474}",
+	"name" : "FGX Components for Delphi and C++",
+	"picture" : "Logo.jpg",
+	"license_type" : "MPL-2.0",
+	"license_file" : "",
+	"platforms" : "Win32;Win64;Android;OSX32",
+	"package_compiler_min" : 22,
+	"package_compiler_max" : 30,
+	"compiler_min" : 23,
+	"compiler_max" : 30,
+	"first_version" : ""
+}

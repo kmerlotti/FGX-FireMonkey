@@ -2,14 +2,14 @@
 	"search_pathes" :
 	[{
 			"pathes" : "Library",
-			"platforms" : "Win32;Win64;Android"
+			"platforms" : "Win32;Win64"
 		}
 	],
 
 	"browsing_pathes" :
 	[{
 			"pathes" : "Library",
-			"platforms" : "Win32;Win64;Android"
+			"platforms" : "Win32;Win64"
 		}
 	],
 
@@ -45,6 +45,10 @@
 	"projects" :
 	[{
 			"project" : "Library\\fgx.dproj",
+			"compiler_min" : 30
+		},
+		{
+			"project" : "Design\\dclfgx.dproj",
 			"compiler_min" : 30
 		}
 	]

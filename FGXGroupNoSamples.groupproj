@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{836A34F0-7F43-4D98-B8E9-C7735B078D71}</ProjectGuid>
+        <ProjectGuid>{132290DB-3110-415C-8A04-2B577981568B}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
         <Projects Include="Library\fgx.dproj">

@@ -1,0 +1,3 @@
+TfgFlipViewStyle RCDATA "..\\Styles\\TfgFlipView.style"
+TfgBadgeStyle RCDATA "..\\Styles\\TfgBadge.style"
+TfgToolbarStyle RCDATA "..\\Styles\\TfgToolbar.style"

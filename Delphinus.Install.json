@@ -1,23 +1,51 @@
 {
 	"search_pathes" :
 	[{
-			"pathes" : "Library;Library\\Interfaces",
-			"platforms" : "Win32;Win64;OSX32;Android"
+			"pathes" : "Library",
+			"platforms" : "Win32;Win64;Android"
 		}
 	],
+
 	"browsing_pathes" :
 	[{
-			"pathes" : "Library;Library\\Interfaces",
-			"platforms" : "Win32;Win64;OSX32;Android"
+			"pathes" : "Library",
+			"platforms" : "Win32;Win64;Android"
 		}
 	],
 
 	"source_folders" :
 	[{
-			"folder" : "Library",
-			"base" : "Library",
+			"folder" : "Design",
+			"base" : "",
 			"recursive" : true,
 			"filter" : "*;*.*"
+		}, {
+			"folder" : "Images",
+			"base" : "",
+			"recursive" : true,
+			"filter" : "*;*.*"
+		}, {
+			"folder" : "Library",
+			"base" : "",
+			"recursive" : true,
+			"filter" : "*;*.*"
+		}, {
+			"folder" : "Samples",
+			"base" : "",
+			"recursive" : true,
+			"filter" : "*;*.*"
+		}, {
+			"folder" : "Styles",
+			"base" : "",
+			"recursive" : true,
+			"filter" : "*;*.*"
+		}
+	],
+
+	"projects" :
+	[{
+			"project" : "Library\\fgx.dproj",
+			"compiler_min" : 30
 		}
 	]
 }

@@ -75,7 +75,7 @@
         <DCC_UnitSearchPath>.\..\Library;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
         <DCC_Description>FMX Extension Components</DCC_Description>
-        <DllSuffix>210</DllSuffix>
+        <DllSuffix>230</DllSuffix>
         <SanitizedProjectName>dclfgx</SanitizedProjectName>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Package Library;ProductVersion=19.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1049</VerInfo_Locale>
@@ -290,13 +290,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Development\delphi-xbuilder\bin\dclfgx210.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Development\delphi-xbuilder\bin\dclfgx230.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>dclfgx.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="D:\TP\trunk\bin\dclfgx210.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="D:\TP\trunk\bin\dclfgx230.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>dclfgx.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
